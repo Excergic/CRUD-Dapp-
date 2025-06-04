@@ -8,6 +8,9 @@ skip-lint = false
 [programs.localnet]
 crud = "21NReLiauM9EUhYMKoCjf6rZrWJhHZUQaPnWHkRrVAJb"
 
+[programs.devnet]
+crud = "21NReLiauM9EUhYMKoCjf6rZrWJhHZUQaPnWHkRrVAJb"
+
 [registry]
 url = "https://api.apr.dev"
 

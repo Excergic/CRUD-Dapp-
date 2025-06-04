@@ -4,7 +4,7 @@
  * Note that this is only a type helper and is not the actual IDL. The original
  * IDL can be found at `target/idl/counter.json`.
  */
-export type Crud = {
+export type Counter = {
   "address": "21NReLiauM9EUhYMKoCjf6rZrWJhHZUQaPnWHkRrVAJb",
   "metadata": {
     "name": "counter",
@@ -34,6 +34,35 @@ export type Crud = {
               {
                 "kind": "arg",
                 "path": "title"
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "userProfile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
               },
               {
                 "kind": "account",
@@ -93,6 +122,35 @@ export type Crud = {
           }
         },
         {
+          "name": "userProfile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
           "name": "owner",
           "writable": true,
           "signer": true
@@ -108,6 +166,60 @@ export type Crud = {
           "type": "string"
         }
       ]
+    },
+    {
+      "name": "initUserProfile",
+      "discriminator": [
+        148,
+        35,
+        126,
+        247,
+        28,
+        169,
+        135,
+        175
+      ],
+      "accounts": [
+        {
+          "name": "userProfile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
     },
     {
       "name": "updateJournalEntry",
@@ -173,6 +285,41 @@ export type Crud = {
         58,
         66
       ]
+    },
+    {
+      "name": "userProfile",
+      "discriminator": [
+        32,
+        37,
+        119,
+        205,
+        179,
+        180,
+        13,
+        194
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "titleEmpty",
+      "msg": "Title cannot be empty"
+    },
+    {
+      "code": 6001,
+      "name": "titleTooLong",
+      "msg": "Title cannot be longer than than 50 characters"
+    },
+    {
+      "code": 6002,
+      "name": "messageTooLong",
+      "msg": "Message cannot be longer than than 500 characters"
+    },
+    {
+      "code": 6003,
+      "name": "messageEmpty",
+      "msg": "Message cannot be empty"
     }
   ],
   "types": [
@@ -192,6 +339,26 @@ export type Crud = {
           {
             "name": "message",
             "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "userProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "entryCount",
+            "type": "u64"
           }
         ]
       }
